@@ -76,10 +76,10 @@ const ContactForm = () => {
     
     // Send email using EmailJS directly with parameters
     emailjs.send(
-      'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-      'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+      'service_nbnb05r', // עדכון עם מזהה השירות שלך
+      'template_b6wry0w', // עדכון עם מזהה התבנית שלך
       templateParams,
-      'YOUR_USER_ID' // Replace with your EmailJS public key
+      'c4dFZ_6nWu3w7hv1m' // עדכון עם המפתח הציבורי שלך
     )
     .then((result) => {
       console.log('Email sent successfully:', result.text);
