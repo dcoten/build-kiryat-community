@@ -3,11 +3,17 @@ import React, { useState, useRef } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { User, Mail, Phone, MapPin, Users, Briefcase, MessageSquare, Check } from 'lucide-react';
 import emailjs from 'emailjs-com';
+import { ContactFormData } from '@/types/contact';
+import { ContactFormField } from '@/components/ContactFormField';
+import { ContactFormTextArea } from '@/components/ContactFormTextArea';
+import { ContactFormSubmitButton } from '@/components/ContactFormSubmitButton';
+import { ContactFormConsent } from '@/components/ContactFormConsent';
+import { ContactFormStats } from '@/components/ContactFormStats';
 
 const ContactForm = () => {
   const { toast } = useToast();
   const form = useRef<HTMLFormElement>(null);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     fullName: '',
     phone: '',
     email: '',
@@ -57,7 +63,6 @@ const ContactForm = () => {
     
     // יצירת טמפלייט להודעת המייל
     const templateParams = {
-      to_email: 'DCOTEN@GMAIL.COM',
       from_name: formData.fullName,
       from_email: formData.email,
       phone: formData.phone,
@@ -100,6 +105,11 @@ const ContactForm = () => {
         reason: '',
         consent: false
       });
+
+      // מנקה את הטופס בצורה פיזית
+      if (form.current) {
+        form.current.reset();
+      }
     })
     .catch((error) => {
       console.error('Failed to send email:', error);
@@ -130,207 +140,78 @@ const ContactForm = () => {
             className="bg-white rounded-xl shadow-lg p-6 md:p-10"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Full Name */}
-              <div className="col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  שם מלא <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <User className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    className="block w-full pr-10 py-3 border-gray-300 bg-gray-50 rounded-md focus:ring-kiryat-blue focus:border-kiryat-blue"
-                    required
-                  />
-                </div>
-              </div>
+              <ContactFormField
+                label="שם מלא"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                icon={<User className="h-5 w-5 text-gray-400" />}
+                required
+              />
 
-              {/* Phone */}
-              <div className="col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  טלפון נייד <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <Phone className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="block w-full pr-10 py-3 border-gray-300 bg-gray-50 rounded-md focus:ring-kiryat-blue focus:border-kiryat-blue"
-                    required
-                  />
-                </div>
-              </div>
+              <ContactFormField
+                label="טלפון נייד"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                icon={<Phone className="h-5 w-5 text-gray-400" />}
+                required
+              />
 
-              {/* Email */}
-              <div className="col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  דוא"ל <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <Mail className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="block w-full pr-10 py-3 border-gray-300 bg-gray-50 rounded-md focus:ring-kiryat-blue focus:border-kiryat-blue"
-                    required
-                  />
-                </div>
-              </div>
+              <ContactFormField
+                label="דוא\"ל"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                icon={<Mail className="h-5 w-5 text-gray-400" />}
+                required
+              />
 
-              {/* Current Residence */}
-              <div className="col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  מקום מגורים נוכחי <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <MapPin className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    name="residence"
-                    value={formData.residence}
-                    onChange={handleChange}
-                    className="block w-full pr-10 py-3 border-gray-300 bg-gray-50 rounded-md focus:ring-kiryat-blue focus:border-kiryat-blue"
-                    required
-                  />
-                </div>
-              </div>
+              <ContactFormField
+                label="מקום מגורים נוכחי"
+                name="residence"
+                value={formData.residence}
+                onChange={handleChange}
+                icon={<MapPin className="h-5 w-5 text-gray-400" />}
+                required
+              />
 
-              {/* Children */}
-              <div className="col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  מספר וגיל הילדים (אם רלוונטי)
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <Users className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    name="children"
-                    value={formData.children}
-                    onChange={handleChange}
-                    className="block w-full pr-10 py-3 border-gray-300 bg-gray-50 rounded-md focus:ring-kiryat-blue focus:border-kiryat-blue"
-                  />
-                </div>
-              </div>
+              <ContactFormField
+                label="מספר וגיל הילדים (אם רלוונטי)"
+                name="children"
+                value={formData.children}
+                onChange={handleChange}
+                icon={<Users className="h-5 w-5 text-gray-400" />}
+              />
 
-              {/* Occupation */}
-              <div className="col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  עיסוקים של בני הזוג
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <Briefcase className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    name="occupation"
-                    value={formData.occupation}
-                    onChange={handleChange}
-                    className="block w-full pr-10 py-3 border-gray-300 bg-gray-50 rounded-md focus:ring-kiryat-blue focus:border-kiryat-blue"
-                  />
-                </div>
-              </div>
+              <ContactFormField
+                label="עיסוקים של בני הזוג"
+                name="occupation"
+                value={formData.occupation}
+                onChange={handleChange}
+                icon={<Briefcase className="h-5 w-5 text-gray-400" />}
+              />
 
-              {/* Reason */}
-              <div className="col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  למה אתם מתעניינים בגרעין?
-                </label>
-                <div className="relative">
-                  <div className="absolute top-3 right-0 flex items-start pr-3 pointer-events-none">
-                    <MessageSquare className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <textarea
-                    name="reason"
-                    value={formData.reason}
-                    onChange={handleChange}
-                    rows={4}
-                    className="block w-full pr-10 py-3 border-gray-300 bg-gray-50 rounded-md focus:ring-kiryat-blue focus:border-kiryat-blue"
-                  ></textarea>
-                </div>
-              </div>
-
-              {/* Consent */}
-              <div className="col-span-2">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="consent"
-                      name="consent"
-                      type="checkbox"
-                      checked={formData.consent}
-                      onChange={handleCheckboxChange}
-                      className="h-4 w-4 text-kiryat-blue focus:ring-kiryat-blue border-gray-300 rounded"
-                    />
-                  </div>
-                  <div className="mr-3 text-sm">
-                    <label htmlFor="consent" className="font-medium text-gray-700">
-                      אני מסכים/ה לקבל עדכונים על הגרעין ומאשר/ת את <a href="#" className="text-kiryat-blue underline">מדיניות הפרטיות</a>
-                    </label>
-                  </div>
-                </div>
-              </div>
+              <ContactFormTextArea
+                label="למה אתם מתעניינים בגרעין?"
+                name="reason"
+                value={formData.reason}
+                onChange={handleChange}
+                icon={<MessageSquare className="h-5 w-5 text-gray-400" />}
+              />
             </div>
 
+            <ContactFormConsent
+              checked={formData.consent}
+              onChange={handleCheckboxChange}
+            />
+
             <div className="mt-8">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full btn-primary flex items-center justify-center text-lg py-4"
-              >
-                {isSubmitting ? (
-                  <span className="inline-flex items-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    מעבד...
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center">
-                    הצטרפו למסע
-                    <Check className="ml-2 h-5 w-5" />
-                  </span>
-                )}
-              </button>
+              <ContactFormSubmitButton isSubmitting={isSubmitting} />
             </div>
           </form>
 
-          <div className="mt-8 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-md">
-            <div className="flex items-center justify-center space-x-6 rtl:space-x-reverse">
-              <div className="text-center">
-                <div className="text-kiryat-blue font-bold text-xl mb-1">12</div>
-                <div className="text-sm text-gray-600">ימים למפגש הזום הבא</div>
-              </div>
-              <div className="h-12 w-px bg-gray-300"></div>
-              <div className="text-center">
-                <div className="text-kiryat-blue font-bold text-xl mb-1">5/15</div>
-                <div className="text-sm text-gray-600">משפחות שחסרות לנו</div>
-              </div>
-              <div className="h-12 w-px bg-gray-300"></div>
-              <div className="text-center">
-                <div className="text-kiryat-blue font-bold text-xl mb-1">8/25</div>
-                <div className="text-sm text-gray-600">חודשים למעבר המתוכנן</div>
-              </div>
-            </div>
-          </div>
+          <ContactFormStats />
         </div>
       </div>
     </section>
