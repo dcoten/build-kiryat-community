@@ -55,44 +55,61 @@ const ContactForm = () => {
     // Submit form
     setIsSubmitting(true);
     
-    // Send email using EmailJS
-    if (form.current) {
-      emailjs.sendForm(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
-        form.current,
-        'YOUR_USER_ID' // Replace with your EmailJS public key
-      )
-      .then((result) => {
-        console.log('Email sent successfully:', result.text);
-        setIsSubmitting(false);
-        toast({
-          title: "הפרטים נשלחו בהצלחה!",
-          description: "ניצור איתכם קשר בהקדם",
-        });
-        
-        // Reset form
-        setFormData({
-          fullName: '',
-          phone: '',
-          email: '',
-          residence: '',
-          children: '',
-          occupation: '',
-          reason: '',
-          consent: false
-        });
-      })
-      .catch((error) => {
-        console.error('Failed to send email:', error);
-        setIsSubmitting(false);
-        toast({
-          title: "שגיאה בשליחת הטופס",
-          description: "אירעה שגיאה בעת שליחת הטופס. אנא נסו שוב מאוחר יותר.",
-          variant: "destructive",
-        });
+    // יצירת טמפלייט להודעת המייל
+    const templateParams = {
+      to_email: 'DCOTEN@GMAIL.COM',
+      from_name: formData.fullName,
+      from_email: formData.email,
+      phone: formData.phone,
+      residence: formData.residence,
+      children: formData.children || 'לא צוין',
+      occupation: formData.occupation || 'לא צוין',
+      reason: formData.reason || 'לא צוין',
+      message: `שם מלא: ${formData.fullName}
+טלפון: ${formData.phone}
+אימייל: ${formData.email}
+מקום מגורים: ${formData.residence}
+ילדים: ${formData.children || 'לא צוין'}
+עיסוק: ${formData.occupation || 'לא צוין'}
+סיבה להתעניינות: ${formData.reason || 'לא צוין'}`
+    };
+    
+    // Send email using EmailJS directly with parameters
+    emailjs.send(
+      'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+      'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+      templateParams,
+      'YOUR_USER_ID' // Replace with your EmailJS public key
+    )
+    .then((result) => {
+      console.log('Email sent successfully:', result.text);
+      setIsSubmitting(false);
+      toast({
+        title: "הפרטים נשלחו בהצלחה!",
+        description: "ניצור איתכם קשר בהקדם",
       });
-    }
+      
+      // Reset form
+      setFormData({
+        fullName: '',
+        phone: '',
+        email: '',
+        residence: '',
+        children: '',
+        occupation: '',
+        reason: '',
+        consent: false
+      });
+    })
+    .catch((error) => {
+      console.error('Failed to send email:', error);
+      setIsSubmitting(false);
+      toast({
+        title: "שגיאה בשליחת הטופס",
+        description: "אירעה שגיאה בעת שליחת הטופס. אנא נסו שוב מאוחר יותר.",
+        variant: "destructive",
+      });
+    });
   };
 
   return (
