@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Facebook, Telegram, Phone, Mail, ArrowUp } from 'lucide-react';
+import { Facebook, Phone, Mail, ArrowUp, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -39,9 +39,9 @@ const Footer = () => {
                 <a 
                   href="#" 
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                  aria-label="Telegram"
+                  aria-label="Message"
                 >
-                  <Telegram className="h-5 w-5" />
+                  <MessageCircle className="h-5 w-5" />
                 </a>
                 <a 
                   href="tel:+9721234567" 
