@@ -1,10 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { User, Mail, Phone, MapPin, Users, Briefcase, MessageSquare, Check } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const ContactForm = () => {
   const { toast } = useToast();
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -50,29 +52,47 @@ const ContactForm = () => {
       return;
     }
     
-    // Submit form (simulated)
+    // Submit form
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "הפרטים נשלחו בהצלחה!",
-        description: "ניצור איתכם קשר בהקדם",
+    // Send email using EmailJS
+    if (form.current) {
+      emailjs.sendForm(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        form.current,
+        'YOUR_USER_ID' // Replace with your EmailJS public key
+      )
+      .then((result) => {
+        console.log('Email sent successfully:', result.text);
+        setIsSubmitting(false);
+        toast({
+          title: "הפרטים נשלחו בהצלחה!",
+          description: "ניצור איתכם קשר בהקדם",
+        });
+        
+        // Reset form
+        setFormData({
+          fullName: '',
+          phone: '',
+          email: '',
+          residence: '',
+          children: '',
+          occupation: '',
+          reason: '',
+          consent: false
+        });
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error);
+        setIsSubmitting(false);
+        toast({
+          title: "שגיאה בשליחת הטופס",
+          description: "אירעה שגיאה בעת שליחת הטופס. אנא נסו שוב מאוחר יותר.",
+          variant: "destructive",
+        });
       });
-      
-      // Reset form
-      setFormData({
-        fullName: '',
-        phone: '',
-        email: '',
-        residence: '',
-        children: '',
-        occupation: '',
-        reason: '',
-        consent: false
-      });
-    }, 1500);
+    }
   };
 
   return (
@@ -88,6 +108,7 @@ const ContactForm = () => {
 
         <div className="max-w-2xl mx-auto">
           <form 
+            ref={form}
             onSubmit={handleSubmit}
             className="bg-white rounded-xl shadow-lg p-6 md:p-10"
           >
