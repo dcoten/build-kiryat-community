@@ -61,10 +61,11 @@ const ContactForm = () => {
     // Submit form
     setIsSubmitting(true);
     
-    // Create email template params
+    // Create email template params - make sure to include to_email for EmailJS
     const templateParams = {
       from_name: formData.fullName,
       from_email: formData.email,
+      to_email: "kirya.team@gmail.com", // Add a recipient email address
       phone: formData.phone,
       residence: formData.residence,
       children: formData.children || 'לא צוין',
@@ -79,12 +80,13 @@ const ContactForm = () => {
 סיבה להתעניינות: ${formData.reason || 'לא צוין'}`
     };
     
-    // Send email using EmailJS directly with parameters
+    // Send email using EmailJS
+    emailjs.init("c4dFZ_6nWu3w7hv1m"); // Initialize explicitly
+    
     emailjs.send(
       'service_nbnb05r',
       'template_b6wry0w',
-      templateParams,
-      'c4dFZ_6nWu3w7hv1m'
+      templateParams
     )
     .then((result) => {
       console.log('Email sent successfully:', result.text);
@@ -123,7 +125,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-kiryat-blue/10 to-kiryat-green/10">
+    <div id="contact" className="section-padding bg-gradient-to-b from-kiryat-blue/10 to-kiryat-green/10">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-10">
           <div className="tag mb-3">הצטרפו אלינו</div>
@@ -214,7 +216,7 @@ const ContactForm = () => {
           <ContactFormStats />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
