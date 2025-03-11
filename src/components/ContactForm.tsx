@@ -89,7 +89,7 @@ const ContactForm = () => {
     // Send email using EmailJS
     emailjs.send(
       'service_nbnb05r',   // Service ID
-      'template_b6wry0w',  // Template ID
+      'template_l2z11qt',  // Updated Template ID
       templateParams
     )
     .then((result) => {
