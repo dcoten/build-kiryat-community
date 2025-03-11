@@ -81,10 +81,10 @@ const ContactForm = () => {
     
     // Send email using EmailJS directly with parameters
     emailjs.send(
-      'service_nbnb05r', // עדכון עם מזהה השירות שלך
-      'template_b6wry0w', // עדכון עם מזהה התבנית שלך
+      'service_nbnb05r',
+      'template_b6wry0w',
       templateParams,
-      'c4dFZ_6nWu3w7hv1m' // עדכון עם המפתח הציבורי שלך
+      'c4dFZ_6nWu3w7hv1m'
     )
     .then((result) => {
       console.log('Email sent successfully:', result.text);
