@@ -1,7 +1,7 @@
 
 import React, { useState, useRef } from 'react';
 import { useToast } from "@/hooks/use-toast";
-import { User, Mail, Phone, MapPin, Users, Briefcase, MessageSquare, Check } from 'lucide-react';
+import { User, Mail, Phone, MapPin, Users, Briefcase, MessageSquare } from 'lucide-react';
 import emailjs from 'emailjs-com';
 import { ContactFormData } from '@/types/contact';
 import { ContactFormField } from '@/components/ContactFormField';
@@ -9,6 +9,9 @@ import { ContactFormTextArea } from '@/components/ContactFormTextArea';
 import { ContactFormSubmitButton } from '@/components/ContactFormSubmitButton';
 import { ContactFormConsent } from '@/components/ContactFormConsent';
 import { ContactFormStats } from '@/components/ContactFormStats';
+
+// Initialize EmailJS with your public key
+emailjs.init("c4dFZ_6nWu3w7hv1m");
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -61,11 +64,11 @@ const ContactForm = () => {
     // Submit form
     setIsSubmitting(true);
     
-    // Create email template params - make sure to include to_email for EmailJS
+    // Create email template params
     const templateParams = {
       from_name: formData.fullName,
       from_email: formData.email,
-      to_email: "kirya.team@gmail.com", // Add a recipient email address
+      to_email: "kirya.team@gmail.com",
       phone: formData.phone,
       residence: formData.residence,
       children: formData.children || 'לא צוין',
@@ -80,12 +83,13 @@ const ContactForm = () => {
 סיבה להתעניינות: ${formData.reason || 'לא צוין'}`
     };
     
-    // Send email using EmailJS
-    emailjs.init("c4dFZ_6nWu3w7hv1m"); // Initialize explicitly
+    // Log the params being sent (for debugging)
+    console.log("Sending email with params:", templateParams);
     
+    // Send email using EmailJS
     emailjs.send(
-      'service_nbnb05r',
-      'template_b6wry0w',
+      'service_nbnb05r',   // Service ID
+      'template_b6wry0w',  // Template ID
       templateParams
     )
     .then((result) => {
@@ -118,7 +122,7 @@ const ContactForm = () => {
       setIsSubmitting(false);
       toast({
         title: "שגיאה בשליחת הטופס",
-        description: "אירעה שגיאה בעת שליחת הטופס. אנא נסו שוב מאוחר יותר.",
+        description: "אירעה שגיאה בעת שליחת הטופס. אנא נסו שוב מאוחר יותר או צרו קשר ישירות במייל kirya.team@gmail.com",
         variant: "destructive",
       });
     });
