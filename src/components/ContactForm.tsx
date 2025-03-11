@@ -61,7 +61,7 @@ const ContactForm = () => {
     // Submit form
     setIsSubmitting(true);
     
-    // יצירת טמפלייט להודעת המייל
+    // Create email template params
     const templateParams = {
       from_name: formData.fullName,
       from_email: formData.email,
@@ -106,7 +106,7 @@ const ContactForm = () => {
         consent: false
       });
 
-      // מנקה את הטופס בצורה פיזית
+      // Clear the form physically
       if (form.current) {
         form.current.reset();
       }
@@ -159,7 +159,7 @@ const ContactForm = () => {
               />
 
               <ContactFormField
-                label="דוא\"ל"
+                label="דוא״ל"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
