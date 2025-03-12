@@ -11,16 +11,37 @@ export type Database = {
     Tables: {
       contacts: {
         Row: {
+          children: string | null
           created_at: string
-          id: number
+          email: string
+          full_name: string
+          id: string
+          occupation: string | null
+          phone: string
+          reason: string | null
+          residence: string
         }
         Insert: {
+          children?: string | null
           created_at?: string
-          id?: number
+          email: string
+          full_name: string
+          id?: string
+          occupation?: string | null
+          phone: string
+          reason?: string | null
+          residence: string
         }
         Update: {
+          children?: string | null
           created_at?: string
-          id?: number
+          email?: string
+          full_name?: string
+          id?: string
+          occupation?: string | null
+          phone?: string
+          reason?: string | null
+          residence?: string
         }
         Relationships: []
       }

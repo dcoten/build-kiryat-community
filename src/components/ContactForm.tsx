@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { User, Mail, Phone, MapPin, Users, Briefcase, MessageSquare } from 'lucide-react';
 import emailjs from 'emailjs-com';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/integrations/supabase/client';
 import { ContactFormData } from '@/types/contact';
 import { ContactFormField } from '@/components/ContactFormField';
 import { ContactFormTextArea } from '@/components/ContactFormTextArea';
@@ -13,12 +13,6 @@ import { ContactFormStats } from '@/components/ContactFormStats';
 
 // Initialize EmailJS with your public key
 emailjs.init("c4dFZ_6nWu3w7hv1m");
-
-// Initialize Supabase client
-// You'll need to replace these with your actual Supabase URL and anon key
-const supabaseUrl = 'YOUR_SUPABASE_URL';
-const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -58,8 +52,7 @@ const ContactForm = () => {
             residence: data.residence,
             children: data.children || null,
             occupation: data.occupation || null,
-            reason: data.reason || null,
-            created_at: new Date().toISOString()
+            reason: data.reason || null
           }
         ]);
       
