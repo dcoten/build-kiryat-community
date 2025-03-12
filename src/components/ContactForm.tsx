@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { User, Mail, Phone, MapPin, Users, Briefcase, MessageSquare } from 'lucide-react';
 import emailjs from 'emailjs-com';
+import { createClient } from '@supabase/supabase-js';
 import { ContactFormData } from '@/types/contact';
 import { ContactFormField } from '@/components/ContactFormField';
 import { ContactFormTextArea } from '@/components/ContactFormTextArea';
@@ -12,6 +13,12 @@ import { ContactFormStats } from '@/components/ContactFormStats';
 
 // Initialize EmailJS with your public key
 emailjs.init("c4dFZ_6nWu3w7hv1m");
+
+// Initialize Supabase client
+// You'll need to replace these with your actual Supabase URL and anon key
+const supabaseUrl = 'YOUR_SUPABASE_URL';
+const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -39,7 +46,33 @@ const ContactForm = () => {
     setFormData(prev => ({ ...prev, [name]: checked }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const saveToSupabase = async (data: ContactFormData) => {
+    try {
+      const { error } = await supabase
+        .from('contacts')
+        .insert([
+          { 
+            full_name: data.fullName,
+            email: data.email,
+            phone: data.phone,
+            residence: data.residence,
+            children: data.children || null,
+            occupation: data.occupation || null,
+            reason: data.reason || null,
+            created_at: new Date().toISOString()
+          }
+        ]);
+      
+      if (error) throw error;
+      console.log('Saved to Supabase successfully');
+      return true;
+    } catch (error) {
+      console.error('Error saving to Supabase:', error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate form
@@ -83,6 +116,9 @@ const ContactForm = () => {
 סיבה להתעניינות: ${formData.reason || 'לא צוין'}`
     };
     
+    // Attempt to save to Supabase first
+    const savedToSupabase = await saveToSupabase(formData);
+    
     // Log the params being sent (for debugging)
     console.log("Sending email with params:", templateParams);
     
@@ -95,10 +131,18 @@ const ContactForm = () => {
     .then((result) => {
       console.log('Email sent successfully:', result.text);
       setIsSubmitting(false);
-      toast({
-        title: "הפרטים נשלחו בהצלחה!",
-        description: "ניצור איתכם קשר בהקדם",
-      });
+      
+      if (savedToSupabase) {
+        toast({
+          title: "הפרטים נשלחו בהצלחה!",
+          description: "הפרטים נשמרו במערכת וניצור איתכם קשר בהקדם",
+        });
+      } else {
+        toast({
+          title: "הפרטים נשלחו בהצלחה!",
+          description: "המייל נשלח אך התרחשה שגיאה בשמירת הפרטים במערכת. ניצור איתכם קשר בהקדם",
+        });
+      }
       
       // Reset form
       setFormData({
@@ -120,11 +164,20 @@ const ContactForm = () => {
     .catch((error) => {
       console.error('Failed to send email:', error);
       setIsSubmitting(false);
-      toast({
-        title: "שגיאה בשליחת הטופס",
-        description: "אירעה שגיאה בעת שליחת הטופס. אנא נסו שוב מאוחר יותר או צרו קשר ישירות במייל kirya.team@gmail.com",
-        variant: "destructive",
-      });
+      
+      if (savedToSupabase) {
+        toast({
+          title: "הפרטים נשמרו, אך אירעה שגיאה בשליחת המייל",
+          description: "הפרטים נשמרו במערכת, אך אירעה שגיאה בשליחת המייל. ניצור איתכם קשר בהקדם או צרו קשר ישירות במייל kirya.team@gmail.com",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "שגיאה בשליחת הטופס",
+          description: "אירעה שגיאה בעת שליחת הטופס. אנא נסו שוב מאוחר יותר או צרו קשר ישירות במייל kirya.team@gmail.com",
+          variant: "destructive",
+        });
+      }
     });
   };
 
