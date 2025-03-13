@@ -25,10 +25,12 @@ const Hero = () => {
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        {/* This would be replaced with an actual image of Kiryat Shmona */}
-        <div className="absolute inset-0 bg-gradient-to-b from-kiryat-blue/60 to-kiryat-green/40"></div>
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-kiryat-blue/60 to-kiryat-green/40 z-10"></div>
+        
+        {/* Background image - Updated to use the uploaded image */}
         <div 
-          className="w-full h-full bg-[url('https://images.unsplash.com/photo-1500076656116-558758c991c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')] bg-cover bg-center"
+          className="w-full h-full bg-[url('/lovable-uploads/acde840b-9777-457f-aa9b-bbfc73adfe27.png')] bg-cover bg-center"
           style={{
             filter: 'brightness(0.9) contrast(1.1)',
           }}
