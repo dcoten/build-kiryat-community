@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap');
 
@@ -151,10 +152,6 @@
   
   .tag {
     @apply inline-block px-3 py-1 rounded-full text-sm font-medium bg-kiryat-lightgray text-kiryat-blue;
-  }
-  
-  .shadow-text {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 }
 
