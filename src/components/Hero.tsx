@@ -26,14 +26,16 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         {/* Background image */}
-        <div 
-          className="absolute inset-0 w-full h-full bg-[url('/lovable-uploads/acde840b-9777-457f-aa9b-bbfc73adfe27.png')] bg-cover bg-center"
+        <img 
+          src="/lovable-uploads/acde840b-9777-457f-aa9b-bbfc73adfe27.png"
+          alt="קריית שמונה רקע"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           style={{
             filter: 'brightness(0.9) contrast(1.1)',
           }}
-        ></div>
+        />
         
-        {/* Overlay gradient - moved after the background image */}
+        {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-kiryat-blue/60 to-kiryat-green/40"></div>
       </div>
 
