@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Facebook, Phone, Mail, ArrowUp, MessageCircle } from 'lucide-react';
 
@@ -37,9 +36,11 @@ const Footer = () => {
                   <Facebook className="h-5 w-5" />
                 </a>
                 <a 
-                  href="#" 
+                  href="https://wa.me/972546734313?text=שלום,%20אני%20מעוניין%20לקבל%20פרטים%20נוספים!" 
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                  aria-label="Message"
+                  aria-label="WhatsApp"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <MessageCircle className="h-5 w-5" />
                 </a>
@@ -79,7 +80,6 @@ const Footer = () => {
         </div>
       </div>
       
-      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
         className="fixed bottom-6 left-6 w-12 h-12 rounded-full bg-kiryat-blue text-white shadow-lg flex items-center justify-center hover:bg-kiryat-blue/90 transition-colors z-10"
