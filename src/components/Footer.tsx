@@ -51,7 +51,7 @@ const Footer = () => {
                   <Phone className="h-5 w-5" />
                 </a>
                 <a 
-                  href="mailto:info@kiryatshmona.org" 
+                  href="mailto:DCOTEN@GMAIL.COM" 
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="Email"
                 >

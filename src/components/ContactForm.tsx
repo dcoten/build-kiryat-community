@@ -94,7 +94,7 @@ const ContactForm = () => {
     const templateParams = {
       from_name: formData.fullName,
       from_email: formData.email,
-      to_email: "kirya.team@gmail.com",
+      to_email: "DCOTEN@GMAIL.COM",
       phone: formData.phone,
       residence: formData.residence,
       children: formData.children || 'לא צוין',
