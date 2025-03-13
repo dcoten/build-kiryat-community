@@ -25,16 +25,16 @@ const Hero = () => {
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-kiryat-blue/60 to-kiryat-green/40 z-10"></div>
-        
-        {/* Background image - Updated to use the uploaded image */}
+        {/* Background image */}
         <div 
-          className="w-full h-full bg-[url('/lovable-uploads/acde840b-9777-457f-aa9b-bbfc73adfe27.png')] bg-cover bg-center"
+          className="absolute inset-0 w-full h-full bg-[url('/lovable-uploads/acde840b-9777-457f-aa9b-bbfc73adfe27.png')] bg-cover bg-center"
           style={{
             filter: 'brightness(0.9) contrast(1.1)',
           }}
         ></div>
+        
+        {/* Overlay gradient - moved after the background image */}
+        <div className="absolute inset-0 bg-gradient-to-b from-kiryat-blue/60 to-kiryat-green/40"></div>
       </div>
 
       {/* Content */}
