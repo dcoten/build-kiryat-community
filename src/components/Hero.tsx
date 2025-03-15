@@ -26,7 +26,7 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         {/* Using the uploaded galilview.jpeg image */}
-        <div className="absolute inset-0 bg-gradient-to-b from-kiryat-blue/60 to-kiryat-green/40 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-kiryat-blue/30 to-kiryat-green/20 z-10"></div>
         <img
           src="/galilview.jpeg"
           alt="נוף גלילי"
@@ -37,10 +37,10 @@ const Hero = () => {
       {/* Content */}
       <div ref={heroRef} className="container mx-auto px-4 z-10 text-center">
         <div className="animate-fade-in max-w-4xl mx-auto">
-          <h1 className="heading-xl text-white mb-4 text-balance shadow-text" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+          <h1 className="heading-xl text-white mb-4 text-balance shadow-text" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>
             לבנות את הציונות של המאה ה-21: הגרעין המשימתי של קריית שמונה
           </h1>
-          <p className="text-xl md:text-2xl font-light text-white mb-8 max-w-3xl mx-auto text-balance" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
+          <p className="text-xl md:text-2xl font-light text-white mb-8 max-w-3xl mx-auto text-balance" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.6)' }}>
             מחפשים 15 משפחות לחזון משותף: הפיכת קריית שמונה למרכז אזורי משגשג ורב-תרבותי
           </p>
           
