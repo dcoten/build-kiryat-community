@@ -23,25 +23,23 @@ const Hero = () => {
 
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Image Container - Fixed Position, Full Coverage */}
       <div className="absolute inset-0 z-0">
-        {/* This would be replaced with an actual image of Kiryat Shmona */}
-        <div className="absolute inset-0 bg-gradient-to-b from-kiryat-blue/60 to-kiryat-green/40"></div>
-        <div 
-          className="w-full h-full bg-[url('https://images.unsplash.com/photo-1500076656116-558758c991c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')] bg-cover bg-center"
-          style={{
-            filter: 'brightness(0.9) contrast(1.1)',
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-kiryat-blue/40 to-kiryat-green/20 z-10"></div>
+        <img 
+          src="/israel-landscape.jpg" 
+          alt="נוף ישראלי"
+          className="object-cover w-full h-full"
+        />
       </div>
 
       {/* Content */}
       <div ref={heroRef} className="container mx-auto px-4 z-10 text-center">
         <div className="animate-fade-in max-w-4xl mx-auto">
-          <h1 className="heading-xl text-white mb-4 text-balance shadow-text">
+          <h1 className="heading-xl text-white mb-4 text-balance shadow-text drop-shadow-lg">
             לבנות את הציונות של המאה ה-21: הגרעין המשימתי של קריית שמונה
           </h1>
-          <p className="text-xl md:text-2xl font-light text-white mb-8 max-w-3xl mx-auto text-balance">
+          <p className="text-xl md:text-2xl font-light text-white mb-8 max-w-3xl mx-auto text-balance drop-shadow-md">
             מחפשים 15 משפחות לחזון משותף: הפיכת קריית שמונה למרכז אזורי משגשג ורב-תרבותי
           </p>
           
