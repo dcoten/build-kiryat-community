@@ -4,10 +4,12 @@ import { Check } from 'lucide-react';
 
 interface ContactFormSubmitButtonProps {
   isSubmitting: boolean;
+  text?: string;
 }
 
 export const ContactFormSubmitButton: React.FC<ContactFormSubmitButtonProps> = ({
-  isSubmitting
+  isSubmitting,
+  text = "שלחו לי פרטים בוואטסאפ"
 }) => {
   return (
     <button
@@ -25,7 +27,7 @@ export const ContactFormSubmitButton: React.FC<ContactFormSubmitButtonProps> = (
         </span>
       ) : (
         <span className="inline-flex items-center">
-          הצטרפו למסע
+          {text}
           <Check className="ml-2 h-5 w-5" />
         </span>
       )}

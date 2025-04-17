@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { User, Mail, Phone, MapPin, Users, Briefcase, MessageSquare } from 'lucide-react';
@@ -179,10 +178,7 @@ const ContactForm = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-10">
           <div className="tag mb-3">הצטרפו אלינו</div>
-          <h2 className="heading-lg mb-6">קחו את הצעד הראשון</h2>
-          <p className="text-lg text-gray-600">
-            השאירו פרטים ונחזור אליכם תוך 24 שעות לשיחה אישית ולהזמנה למפגש הזום הקרוב
-          </p>
+          <h2 className="heading-lg mb-6">רוצים לשמוע עוד? השאירו כאן פרטים ונשלח לכם מידע אישי בוואטסאפ</h2>
         </div>
 
         <div className="max-w-2xl mx-auto">
@@ -259,11 +255,21 @@ const ContactForm = () => {
             />
 
             <div className="mt-8">
-              <ContactFormSubmitButton isSubmitting={isSubmitting} />
+              <ContactFormSubmitButton isSubmitting={isSubmitting} text="שלחו לי פרטים בוואטסאפ" />
             </div>
           </form>
 
+          <div className="mt-4 text-center text-gray-600">
+            ההצטרפות אינה מחייבת – רק תקבלו מאיתנו מידע חם מהשטח.
+          </div>
+
           <ContactFormStats />
+
+          <div className="mt-12 text-center space-y-2 text-gray-700">
+            <p>אנחנו רק בתחילת הדרך – אבל יש התרגשות, ויש חזון.</p>
+            <p>נשמח שתהיו חלק ממנו.</p>
+            <p className="font-medium">דני</p>
+          </div>
         </div>
       </div>
     </div>

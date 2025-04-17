@@ -40,9 +40,18 @@ const Hero = () => {
           <h1 className="heading-xl text-white mb-4 text-balance shadow-text" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>
             לבנות את הציונות של המאה ה-21: הגרעין המשימתי של קריית שמונה
           </h1>
-          <p className="text-xl md:text-2xl font-light text-white mb-8 max-w-3xl mx-auto text-balance" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.6)' }}>
-            מחפשים 15 משפחות לחזון משותף: הפיכת קריית שמונה למרכז אזורי משגשג ורב-תרבותי
-          </p>
+          
+          <div className="text-xl md:text-2xl font-light text-white mb-8 max-w-3xl mx-auto space-y-4 text-balance" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.6)' }}>
+            <p>
+              חולמים על שינוי? מחפשים מקום לגדל בו משפחה עם קהילה חמה, חינוך טוב וטבע מסביב?
+            </p>
+            <p>
+              אנחנו בתחילת הדרך לבנות קהילה חדשה ומגוונת בקריית שמונה – עם משפחות מכל הארץ.
+            </p>
+            <p>
+              אם זה מסקרן אתכם – השאירו פרטים ונחזור אליכם עם מידע אישי בוואטסאפ.
+            </p>
+          </div>
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-10">
             <a 
