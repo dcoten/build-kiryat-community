@@ -25,12 +25,14 @@ const Hero = () => {
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        {/* Using the uploaded galilview.jpeg image */}
+        {/* Using the uploaded galilview.jpeg image with absolute URL path */}
         <div className="absolute inset-0 bg-gradient-to-b from-kiryat-blue/30 to-kiryat-green/20 z-10"></div>
         <img
           src="/galilview.jpeg"
           alt="נוף גלילי"
           className="object-cover w-full h-full"
+          loading="eager"
+          crossOrigin="anonymous"
         />
       </div>
 
