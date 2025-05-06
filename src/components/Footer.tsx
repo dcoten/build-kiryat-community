@@ -33,6 +33,7 @@ const Footer = () => {
                   href="https://facebook.com" 
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="Facebook"
+                  target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Facebook className="h-5 w-5" />
@@ -74,8 +75,8 @@ const Footer = () => {
             </div>
             
             <div className="flex space-x-6 rtl:space-x-reverse text-sm">
-              <a href="https://privacy-policy" className="text-white/60 hover:text-white transition-colors">מדיניות פרטיות</a>
-              <a href="https://terms" className="text-white/60 hover:text-white transition-colors">תנאי שימוש</a>
+              <a href="/privacy-policy" className="text-white/60 hover:text-white transition-colors">מדיניות פרטיות</a>
+              <a href="/terms" className="text-white/60 hover:text-white transition-colors">תנאי שימוש</a>
               <a href="#contact" className="text-white/60 hover:text-white transition-colors">צור קשר</a>
             </div>
           </div>

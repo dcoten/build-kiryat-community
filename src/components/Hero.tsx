@@ -33,6 +33,7 @@ const Hero = () => {
           className="object-cover w-full h-full"
           loading="eager"
           crossOrigin="anonymous"
+          fetchpriority="high"
         />
       </div>
 
