@@ -233,7 +233,7 @@ const ContactForm = () => {
               />
 
               <ContactFormField
-                label="עיסוקים של בני הזוג"
+                label="משהו שחשוב לכם שנדע?"
                 name="occupation"
                 value={formData.occupation}
                 onChange={handleChange}
@@ -255,7 +255,7 @@ const ContactForm = () => {
             />
 
             <div className="mt-8">
-              <ContactFormSubmitButton isSubmitting={isSubmitting} text="שלחו לי פרטים בוואטסאפ" />
+              <ContactFormSubmitButton isSubmitting={isSubmitting} text="��לחו לי פרטים בוואטסאפ" />
             </div>
           </form>
 
