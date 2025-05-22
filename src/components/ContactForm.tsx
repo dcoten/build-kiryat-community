@@ -160,13 +160,13 @@ const ContactForm = () => {
       if (savedToSupabase) {
         toast({
           title: "הפרטים נשמרו, אך אירעה שגיאה בשליחת המייל",
-          description: "הפרטים נשמרו במערכת, אך אירעה שגיאה בשליחת המייל. ניצור איתכם קשר בהקדם או צרו קשר ישירות במייל kirya.team@gmail.com",
+          description: "הפרטים נשמרו במערכת, אך אירעה שגיאה בשליחת המייל. ניצור איתכם קשר בהקדם או צרו קשר ישירות במייל dany@north-il.center",
           variant: "destructive",
         });
       } else {
         toast({
           title: "שגיאה בשליחת הטופס",
-          description: "אירעה שגיאה בעת שליחת הטופס. אנא נסו שוב מאוחר יותר או צרו קשר ישירות במייל kirya.team@gmail.com",
+          description: "אירעה שגיאה בעת שליחת הטופס. אנא נסו שוב מאוחר יותר או צרו קשר ישירות במייל dany@north-il.center",
           variant: "destructive",
         });
       }
