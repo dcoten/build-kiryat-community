@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { ArrowRight, Milestone } from 'lucide-react';
+import { ArrowLeft, Milestone } from 'lucide-react';
 
 const Vision = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -70,8 +70,8 @@ const Vision = () => {
               {/* Timeline steps */}
               {[
                 { title: "היום", desc: "תחילת המסע", icon: <Milestone className="text-kiryat-blue" /> },
-                { title: "2025", desc: "הקמת הגרעין", icon: <ArrowRight className="text-kiryat-blue" /> },
-                { title: "2026", desc: "ביסוס קהילתי", icon: <ArrowRight className="text-kiryat-blue" /> },
+                { title: "2025", desc: "הקמת הגרעין", icon: <ArrowLeft className="text-kiryat-blue" /> },
+                { title: "2026", desc: "ביסוס קהילתי", icon: <ArrowLeft className="text-kiryat-blue" /> },
                 { title: "2028", desc: "השפעה אזורית", icon: <Milestone className="text-kiryat-green" /> }
               ].map((step, index) => (
                 <div key={index} className="relative flex-1 text-center mb-8 md:mb-0">
