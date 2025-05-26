@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Check } from 'lucide-react';
 
 interface ContactFormSubmitButtonProps {
   isSubmitting: boolean;
@@ -18,13 +17,12 @@ export const ContactFormSubmitButton: React.FC<ContactFormSubmitButtonProps> = (
       dir="rtl"
       className="w-full btn-primary flex items-center justify-center text-lg py-4"
       style={{ 
-        fontFamily: 'Heebo, Assistant, Arial, sans-serif',
-        unicodeBidi: 'embed',
+        fontFamily: 'Arial, sans-serif',
         direction: 'rtl'
       }}
     >
       {isSubmitting ? (
-        <span className="inline-flex items-center gap-2" dir="rtl" style={{ direction: 'rtl' }}>
+        <span className="inline-flex items-center gap-2">
           <span>מעבד...</span>
           <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -32,9 +30,9 @@ export const ContactFormSubmitButton: React.FC<ContactFormSubmitButtonProps> = (
           </svg>
         </span>
       ) : (
-        <span className="inline-flex items-center gap-2" dir="rtl" style={{ direction: 'rtl' }}>
+        <span className="inline-flex items-center gap-2">
           <span>{text}</span>
-          <Check className="h-5 w-5" />
+          <span>✓</span>
         </span>
       )}
     </button>
