@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Users, Heart, BookOpen, Handshake, Target } from 'lucide-react';
+import { Users, Heart, BookOpen, Handshake, Target, MapPin } from 'lucide-react';
 
 interface Value {
   icon: React.ReactNode;
@@ -40,6 +40,12 @@ const Values = () => {
       title: "מחויבות לפעילות משימתית",
       description: "תרומה מוחשית לחיזוק האזור דרך יוזמות חברתיות וקהילתיות",
       quote: "אנחנו רואים בהשתקעות בצפון שליחות לאומית ואישית"
+    },
+    {
+      icon: <MapPin className="h-10 w-10 text-kiryat-blue" />,
+      title: "חיבור למקום ולקהילה",
+      description: "מחויבות, קשר וכבוד לקהילה המקומית בקריית שמונה ומורשתה",
+      quote: "אנחנו באים להתחבר לקהילה ולהיות חלק ממנה"
     }
   ];
 
