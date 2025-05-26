@@ -1,3 +1,4 @@
+
 import React from 'react';
 export const ContactFormStats: React.FC = () => {
   return <div className="mt-8 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-md">
@@ -8,7 +9,7 @@ export const ContactFormStats: React.FC = () => {
         </div>
         <div className="h-12 w-px bg-gray-300"></div>
         <div className="text-center">
-          <div className="text-kiryat-blue font-bold text-xl mb-1">5/15</div>
+          <div className="text-kiryat-blue font-bold text-xl mb-1">8/15</div>
           <div className="text-sm text-gray-600">משפחות שחסרות לנו</div>
         </div>
         <div className="h-12 w-px bg-gray-300"></div>
