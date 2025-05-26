@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Facebook, Phone, Mail, ArrowUp, MessageCircle } from 'lucide-react';
+import { Mail, ArrowUp, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -30,15 +29,6 @@ const Footer = () => {
             <div className="flex flex-col items-center gap-4">
               <div className="flex space-x-4 rtl:space-x-reverse">
                 <a 
-                  href="https://facebook.com" 
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                  aria-label="Facebook"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a 
                   href="https://wa.me/972546734313?text=שלום,%20אני%20מעוניין%20לקבל%20פרטים%20נוספים!" 
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="WhatsApp"
@@ -46,13 +36,6 @@ const Footer = () => {
                   rel="noopener noreferrer"
                 >
                   <MessageCircle className="h-5 w-5" />
-                </a>
-                <a 
-                  href="tel:+9721234567" 
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                  aria-label="Phone"
-                >
-                  <Phone className="h-5 w-5" />
                 </a>
                 <a 
                   href="mailto:DCOTEN@GMAIL.COM" 
