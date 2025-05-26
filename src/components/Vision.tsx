@@ -69,7 +69,7 @@ const Vision = () => {
               
               {/* Timeline steps */}
               {[
-                { title: "היום", desc: "תחילת המסע", icon: <ArrowRight className="text-kiryat-blue" /> },
+                { title: "היום", desc: "תחילת המסע", icon: <ArrowLeft className="text-kiryat-blue" /> },
                 { title: "2025", desc: "הקמת הגרעין", icon: <ArrowLeft className="text-kiryat-blue" /> },
                 { title: "2026", desc: "ביסוס קהילתי", icon: <ArrowLeft className="text-kiryat-blue" /> },
                 { title: "2028", desc: "השפעה אזורית", icon: <ArrowLeft className="text-kiryat-green" /> }
