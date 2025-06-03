@@ -255,7 +255,7 @@ const ContactForm = () => {
             />
 
             <div className="mt-8">
-              <ContactFormSubmitButton isSubmitting={isSubmitting} text="��לחו לי פרטים בוואטסאפ" />
+              <ContactFormSubmitButton isSubmitting={isSubmitting} text="שלחו לי פרטים בוואטסאפ" />
             </div>
           </form>
 
