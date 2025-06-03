@@ -74,6 +74,7 @@ const ContactForm = () => {
         description: "אנא מלאו את כל השדות המסומנים בכוכבית",
         variant: "destructive",
       });
+      fbq('track', 'Lead');
       return;
     }
     
