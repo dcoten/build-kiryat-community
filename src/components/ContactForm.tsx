@@ -13,6 +13,13 @@ import { ContactFormStats } from '@/components/ContactFormStats';
 // Initialize EmailJS with your public key
 emailjs.init("c4dFZ_6nWu3w7hv1m");
 
+// Declare fbq as a global function
+declare global {
+  interface Window {
+    fbq: (...args: any[]) => void;
+  }
+}
+
 const ContactForm = () => {
   const { toast } = useToast();
   const form = useRef<HTMLFormElement>(null);
@@ -74,7 +81,10 @@ const ContactForm = () => {
         description: "אנא מלאו את כל השדות המסומנים בכוכבית",
         variant: "destructive",
       });
-      fbq('track', 'Lead');
+      // Use window.fbq to avoid TypeScript error
+      if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'Lead');
+      }
       return;
     }
     
