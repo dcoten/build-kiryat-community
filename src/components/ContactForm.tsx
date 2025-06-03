@@ -56,10 +56,13 @@ const ContactForm = () => {
   const trackFacebookPixel = (eventType: string, data?: any) => {
     if (typeof window !== 'undefined' && window.fbq) {
       console.log(`🔥 Tracking Facebook Pixel event: ${eventType}`, data);
-      if (data) {
-        window.fbq('track', eventType, data);
+      
+      // Use trackCustom for custom events, track for standard events
+      if (eventType === 'Lead') {
+        window.fbq('track', 'Lead', data);
       } else {
-        window.fbq('track', eventType);
+        // For custom events like GareenFormSubmit, use trackCustom
+        window.fbq('trackCustom', eventType, data);
       }
     } else {
       console.log('❌ Facebook Pixel not available for tracking:', eventType);
@@ -164,23 +167,21 @@ const ContactForm = () => {
       // 🔥 TRACK FACEBOOK PIXEL LEAD EVENT ON SUCCESS
       console.log('📊 Tracking successful form submission to Facebook Pixel');
       
-      // Track standard Lead event
+      // Track standard Lead event (using track)
       trackFacebookPixel('Lead');
       
-      // Track custom conversion with lead data
+      // Track custom conversion with lead data (using trackCustom)
       trackFacebookPixel('GareenFormSubmit', {
         content_name: 'Gareen Contact Form',
         content_category: 'Lead Generation',
         value: 1,
         currency: 'ILS',
-        custom_data: {
-          full_name: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          residence: formData.residence,
-          form_type: 'contact_form',
-          timestamp: new Date().toISOString()
-        }
+        full_name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        residence: formData.residence,
+        form_type: 'contact_form',
+        timestamp: new Date().toISOString()
       });
       
       if (savedToSupabase) {
