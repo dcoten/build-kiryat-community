@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+
+import React, { useState, useRef, useEffect } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { User, Mail, Phone, MapPin, Users, Briefcase, MessageSquare } from 'lucide-react';
 import emailjs from 'emailjs-com';
@@ -35,6 +36,35 @@ const ContactForm = () => {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Check if Facebook Pixel is loaded
+  useEffect(() => {
+    const checkPixelLoaded = () => {
+      if (typeof window !== 'undefined' && window.fbq) {
+        console.log('✅ Facebook Pixel loaded successfully');
+      } else {
+        console.log('❌ Facebook Pixel not loaded');
+      }
+    };
+    
+    // Check immediately and after a delay
+    checkPixelLoaded();
+    setTimeout(checkPixelLoaded, 2000);
+  }, []);
+
+  // Function to track Facebook Pixel events
+  const trackFacebookPixel = (eventType: string, data?: any) => {
+    if (typeof window !== 'undefined' && window.fbq) {
+      console.log(`🔥 Tracking Facebook Pixel event: ${eventType}`, data);
+      if (data) {
+        window.fbq('track', eventType, data);
+      } else {
+        window.fbq('track', eventType);
+      }
+    } else {
+      console.log('❌ Facebook Pixel not available for tracking:', eventType);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -81,10 +111,6 @@ const ContactForm = () => {
         description: "אנא מלאו את כל השדות המסומנים בכוכבית",
         variant: "destructive",
       });
-      // Use window.fbq to avoid TypeScript error
-      if (typeof window !== 'undefined' && window.fbq) {
-        window.fbq('track', 'Lead');
-      }
       return;
     }
     
@@ -134,6 +160,28 @@ const ContactForm = () => {
     .then((result) => {
       console.log('Email sent successfully:', result.text);
       setIsSubmitting(false);
+      
+      // 🔥 TRACK FACEBOOK PIXEL LEAD EVENT ON SUCCESS
+      console.log('📊 Tracking successful form submission to Facebook Pixel');
+      
+      // Track standard Lead event
+      trackFacebookPixel('Lead');
+      
+      // Track custom conversion with lead data
+      trackFacebookPixel('GareenFormSubmit', {
+        content_name: 'Gareen Contact Form',
+        content_category: 'Lead Generation',
+        value: 1,
+        currency: 'ILS',
+        custom_data: {
+          full_name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          residence: formData.residence,
+          form_type: 'contact_form',
+          timestamp: new Date().toISOString()
+        }
+      });
       
       if (savedToSupabase) {
         toast({
