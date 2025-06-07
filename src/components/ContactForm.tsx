@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { User, Mail, Phone, MapPin, Users, Briefcase, MessageSquare } from 'lucide-react';
@@ -14,10 +13,11 @@ import { ContactFormStats } from '@/components/ContactFormStats';
 // Initialize EmailJS with your public key
 emailjs.init("c4dFZ_6nWu3w7hv1m");
 
-// Declare fbq as a global function
+// Declare global functions
 declare global {
   interface Window {
     fbq: (...args: any[]) => void;
+    gtag: (...args: any[]) => void;
   }
 }
 
@@ -37,19 +37,27 @@ const ContactForm = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Check if Facebook Pixel is loaded
+  // Check if tracking scripts are loaded
   useEffect(() => {
-    const checkPixelLoaded = () => {
-      if (typeof window !== 'undefined' && window.fbq) {
-        console.log('✅ Facebook Pixel loaded successfully');
-      } else {
-        console.log('❌ Facebook Pixel not loaded');
+    const checkTracking = () => {
+      if (typeof window !== 'undefined') {
+        if (window.fbq) {
+          console.log('✅ Facebook Pixel loaded successfully');
+        } else {
+          console.log('❌ Facebook Pixel not loaded');
+        }
+        
+        if (window.gtag) {
+          console.log('✅ Google Analytics loaded successfully');
+        } else {
+          console.log('❌ Google Analytics not loaded');
+        }
       }
     };
     
     // Check immediately and after a delay
-    checkPixelLoaded();
-    setTimeout(checkPixelLoaded, 2000);
+    checkTracking();
+    setTimeout(checkTracking, 2000);
   }, []);
 
   // Function to track Facebook Pixel events
@@ -66,6 +74,16 @@ const ContactForm = () => {
       }
     } else {
       console.log('❌ Facebook Pixel not available for tracking:', eventType);
+    }
+  };
+
+  // Function to track Google Analytics events
+  const trackGoogleAnalytics = (eventName: string, parameters?: any) => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      console.log(`📊 Tracking Google Analytics event: ${eventName}`, parameters);
+      window.gtag('event', eventName, parameters);
+    } else {
+      console.log('❌ Google Analytics not available for tracking:', eventName);
     }
   };
 
@@ -164,13 +182,11 @@ const ContactForm = () => {
       console.log('Email sent successfully:', result.text);
       setIsSubmitting(false);
       
-      // 🔥 TRACK FACEBOOK PIXEL LEAD EVENT ON SUCCESS
-      console.log('📊 Tracking successful form submission to Facebook Pixel');
+      // 🔥 TRACK EVENTS ON SUCCESS
+      console.log('📊 Tracking successful form submission');
       
-      // Track standard Lead event (using track)
+      // Track Facebook Pixel events
       trackFacebookPixel('Lead');
-      
-      // Track custom conversion with lead data (using trackCustom)
       trackFacebookPixel('GareenFormSubmit', {
         content_name: 'Gareen Contact Form',
         content_category: 'Lead Generation',
@@ -182,6 +198,22 @@ const ContactForm = () => {
         residence: formData.residence,
         form_type: 'contact_form',
         timestamp: new Date().toISOString()
+      });
+      
+      // Track Google Analytics events
+      trackGoogleAnalytics('generate_lead', {
+        event_category: 'engagement',
+        event_label: 'Gareen Contact Form',
+        value: 1,
+        currency: 'ILS',
+        form_type: 'contact_form',
+        residence: formData.residence
+      });
+      
+      trackGoogleAnalytics('form_submit', {
+        event_category: 'engagement', 
+        event_label: 'Contact Form Submission',
+        form_name: 'gareen_contact_form'
       });
       
       if (savedToSupabase) {
