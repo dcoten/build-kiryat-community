@@ -35,9 +35,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <div className="h-10 w-10 rounded-full bg-kiryat-blue/90 flex items-center justify-center text-white font-bold">
-            קש
-          </div>
+          <img 
+            src="https://res.cloudinary.com/dk2jdrra0/image/upload/v1750013789/%D7%A2%D7%99%D7%A6%D7%95%D7%91_%D7%9C%D7%9C%D7%90_%D7%A9%D7%9D_1_cbfoxv.png"
+            alt="לוגו גרעין קריית שמונה"
+            className="h-10 w-10 rounded-full object-cover"
+          />
           <span className={cn(
             'font-heebo font-bold text-lg transition-colors',
             isScrolled ? 'text-kiryat-blue' : 'text-white'
