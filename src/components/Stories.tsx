@@ -43,10 +43,10 @@ const Stories = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <div className="tag mb-3">משפחות מובילות</div>
-          <h2 className="heading-lg mb-6">האנשים שכבר בדרך</h2>
+          <h2 className="heading-lg mb-6">האנשים שכבר בדרך - משפחות קריית שמונה</h2>
           <p className="text-lg text-gray-600">
             הכירו את המשפחות שכבר החליטו להצטרף למסע המשותף לקריית שמונה.
-            אלו האנשים שיבנו יחד את הקהילה החדשה.
+            אלו האנשים שיבנו יחד את הקהילה החדשה - משפחות עוברים לגור בקריית שמונה כחלק מהגרעין המשימתי.
           </p>
         </div>
 
@@ -60,7 +60,7 @@ const Stories = () => {
                 {story.image ? (
                   <img 
                     src={story.image} 
-                    alt={story.name} 
+                    alt={`${story.name} - משפחה בגרעין קריית שמונה`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 ) : (

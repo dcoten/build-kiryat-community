@@ -1,0 +1,19 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://gareen.org/sitemap.xml
+
+# Specific instructions for search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block any unwanted crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

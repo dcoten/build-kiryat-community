@@ -38,6 +38,7 @@ const Vision = () => {
           
           <div className="space-y-10">
             <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow fade-in-section">
+              <h3 className="sr-only">מצב הצפון לאחר המלחמה - הזדמנות לחיזוק קריית שמונה</h3>
               <p className="text-lg leading-relaxed mb-4">
                 <strong className="text-kiryat-blue">לאחר המלחמה, הצפון עומד בפני אתגרים חסרי תקדים. </strong>
                 זוהי נקודת מפנה היסטורית שמחייבת אותנו לפעול. הגרעין המשימתי בקריית שמונה הוא צעד משמעותי להעצמת האזור ובניית עתיד חדש.
@@ -45,6 +46,7 @@ const Vision = () => {
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow fade-in-section">
+              <h3 className="sr-only">יתרונות מיקום קריית שמונה - שער הכניסה לצפון</h3>
               <p className="text-lg leading-relaxed mb-4">
                 <strong className="text-kiryat-green">קריית שמונה היא שער הכניסה לצפון - </strong>
                 עיר עם פוטנציאל אדיר, טבע מרהיב, וקהילה מגוונת המחכה להתחדשות. המיקום האסטרטגי והמשאבים הקיימים יוצרים בסיס מושלם להתחדשות.
@@ -52,6 +54,7 @@ const Vision = () => {
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow fade-in-section">
+              <h3 className="sr-only">החזון - מרכז אזורי חזק וצומח בקריית שמונה</h3>
               <p className="text-lg leading-relaxed">
                 <strong className="text-kiryat-earth">החזון שלנו: </strong>
                 יצירת מרכז אזורי חזק, צומח ומחובר, בעל איכות חיים גבוהה, שישמש מודל לערי פריפריה בישראל. מרכז שמשלב בין קהילות שונות, מעודד יזמות ויצירתיות, ומחזק את החוסן החברתי.

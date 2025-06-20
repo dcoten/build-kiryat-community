@@ -1,0 +1,38 @@
+
+{
+  "name": "גרעין קריית שמונה - בונים את הציונות של המאה ה-21",
+  "short_name": "גרעין קריית שמונה",
+  "description": "הגרעין המשימתי של קריית שמונה - מחפשים 15 משפחות לחזון משותף: הפיכת קריית שמונה למרכז אזורי משגשג",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2B5F99",
+  "lang": "he",
+  "dir": "rtl",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/galilview.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["community", "lifestyle", "social"],
+  "keywords": [
+    "קריית שמונה",
+    "גרעין קריית שמונה", 
+    "משפחות קריית שמונה",
+    "עוברים לגור בקריית שמונה",
+    "קהילת קריית שמונה",
+    "מחזקים את קריית שמונה",
+    "צפון ישראל",
+    "קהילה",
+    "גרעין משימתי"
+  ]
+}
