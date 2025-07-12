@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { ArrowDown } from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
@@ -49,7 +50,7 @@ const Hero = () => {
               רוצים לשמוע עוד? השאירו פרטים
             </a>
             
-            <AnimatedCounter end={7} />
+            <AnimatedCounter end={11} />
           </div>
         </div>
       </div>
