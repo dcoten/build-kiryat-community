@@ -9,7 +9,7 @@ export const ContactFormStats: React.FC = () => {
         </div>
         <div className="h-12 w-px bg-gray-300"></div>
         <div className="text-center">
-          <div className="text-kiryat-blue font-bold text-xl mb-1">8/15</div>
+          <div className="text-kiryat-blue font-bold text-xl mb-1">4/15</div>
           <div className="text-sm text-gray-600">משפחות שחסרות לנו</div>
         </div>
         <div className="h-12 w-px bg-gray-300"></div>
