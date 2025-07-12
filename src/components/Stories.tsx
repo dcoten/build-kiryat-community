@@ -1,7 +1,5 @@
-
 import React from 'react';
 import { User, MapPin, Quote } from 'lucide-react';
-
 interface FamilyStory {
   name: string;
   origin: string;
@@ -9,37 +7,29 @@ interface FamilyStory {
   quote: string;
   image?: string;
 }
-
 const Stories = () => {
-  const stories: FamilyStory[] = [
-    {
-      name: "משפחת כהן",
-      origin: "תל אביב",
-      occupation: "חינוך וטכנולוגיה",
-      quote: "אנחנו מאמינים שבקריית שמונה יש הזדמנות ייחודית לחיבור בין עולמות וליצירת קהילה משמעותית."
-    },
-    {
-      name: "משפחת לוי",
-      origin: "באר שבע",
-      occupation: "רפואה ויזמות",
-      quote: "רצינו לקחת חלק במשהו גדול מאיתנו, להיות חלק מסיפור ההתחדשות של הצפון."
-    },
-    {
-      name: "משפחת ישראלי",
-      origin: "ירושלים",
-      occupation: "אמנות וחינוך",
-      quote: "חיפשנו קהילה ערכית שתהיה משפחה שנייה, ובגרעין הרגשנו בבית מהרגע הראשון."
-    },
-    {
-      name: "משפחת אברהמי",
-      origin: "חיפה",
-      occupation: "הייטק ותיירות",
-      quote: "הצפון הוא העתיד של ישראל, ואנחנו רוצים להיות חלק מהעתיד הזה."
-    }
-  ];
-
-  return (
-    <section id="המשפחות" className="section-padding bg-kiryat-lightgray/30">
+  const stories: FamilyStory[] = [{
+    name: "משפחת כהן",
+    origin: "תל אביב",
+    occupation: "חינוך וטכנולוגיה",
+    quote: "אנחנו מאמינים שבקריית שמונה יש הזדמנות ייחודית לחיבור בין עולמות וליצירת קהילה משמעותית."
+  }, {
+    name: "משפחת לוי",
+    origin: "באר שבע",
+    occupation: "רפואה ויזמות",
+    quote: "רצינו לקחת חלק במשהו גדול מאיתנו, להיות חלק מסיפור ההתחדשות של הצפון."
+  }, {
+    name: "משפחת ישראלי",
+    origin: "ירושלים",
+    occupation: "אמנות וחינוך",
+    quote: "חיפשנו קהילה ערכית שתהיה משפחה שנייה, ובגרעין הרגשנו בבית מהרגע הראשון."
+  }, {
+    name: "משפחת אברהמי",
+    origin: "חיפה",
+    occupation: "הייטק ותיירות",
+    quote: "הצפון הוא העתיד של ישראל, ואנחנו רוצים להיות חלק מהעתיד הזה."
+  }];
+  return <section id="המשפחות" className="section-padding bg-kiryat-lightgray/30">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <div className="tag mb-3">משפחות מובילות</div>
@@ -51,23 +41,11 @@ const Stories = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stories.map((story, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 group"
-            >
+          {stories.map((story, index) => <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 group">
               <div className="h-40 bg-gradient-to-r from-kiryat-blue to-kiryat-green relative overflow-hidden">
-                {story.image ? (
-                  <img 
-                    src={story.image} 
-                    alt={`${story.name} - משפחה בגרעין קריית שמונה`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
+                {story.image ? <img src={story.image} alt={`${story.name} - משפחה בגרעין קריית שמונה`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" /> : <div className="absolute inset-0 flex items-center justify-center">
                     <User size={60} className="text-white/40" />
-                  </div>
-                )}
+                  </div>}
               </div>
               
               <div className="p-6">
@@ -85,8 +63,7 @@ const Stories = () => {
                   <p className="text-gray-700 leading-relaxed">{story.quote}</p>
                 </div>
               </div>
-            </div>
-          ))}
+            </div>)}
         </div>
 
         <div className="mt-12 text-center">
@@ -95,8 +72,6 @@ const Stories = () => {
           </a>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Stories;
